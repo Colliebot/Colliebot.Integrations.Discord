@@ -1,9 +1,9 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Discord.WebSocket;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using DiscordLogMessage = Discord.LogMessage;
 
 namespace Colliebot.Integrations.Discord
 {
@@ -26,9 +26,9 @@ namespace Colliebot.Integrations.Discord
             _commands.Log += OnCommandLogAsync;
         }
 
-        private Task OnDiscordLogAsync(LogMessage msg)
+        private Task OnDiscordLogAsync(DiscordLogMessage msg)
             => LogAsync(msg.Severity, msg.Source, msg.Exception?.ToString() ?? msg.Message);
-        private Task OnCommandLogAsync(LogMessage msg)
+        private Task OnCommandLogAsync(DiscordLogMessage msg)
             => LogAsync(msg.Severity, msg.Source, msg.Exception?.ToString() ?? msg.Message);
 
         private Task LogAsync(object severity, string source, string message)
