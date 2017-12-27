@@ -21,6 +21,12 @@ namespace Colliebot.Integrations.Discord
             Configuration = builder.Build();
         }
 
+        public static async Task RunAsync(string[] args)
+        {
+            var startup = new Startup(args);
+            await startup.RunAsync();
+        }
+
         public async Task RunAsync()
         {
             var services = new ServiceCollection();
